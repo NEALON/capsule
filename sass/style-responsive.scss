@@ -1,0 +1,231 @@
+/*!
+ * Tidal
+ * Project: BPMW
+ * Date: 11222013
+ * 
+ * Author: Eugene Tsurcan 
+ * Front End Developer 
+ * [http://twitter.com/eugenetsurcan]
+ * 
+ * STYLES RESPONSIVE (Tablets, mobiles) 
+ *  
+ */
+
+
+// ---------------------------------------------------------------------------
+// Imports
+
+@import "compass"; 
+@import "susy";
+@import "mixins";
+@import "variables";
+
+
+/* ==========================================================================
+   Larger devices / wide desktop (1140px and down)
+   ========================================================================== */
+
+/* between 975px - 1140px */
+@include at-breakpoint(12 $screen-lg-min) {
+  /* Container */
+  .container { max-width: $container-md; }
+  
+  /* Buttons */
+  .btn.btn-large { height: 36px; padding: 4px 10px; }
+  
+  /* Form (Input Large) */
+  select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
+  input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
+  input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    &.in-large { height: 36px; padding: 8px 10px; }
+  }
+  
+  /* Menu Main */
+  .menu {
+    a { padding: 0 10px; }
+    .devider { padding: 0 5px; }
+  }
+  
+  /* Outside Content (cancels the side distance of the page content) */
+  .bg-round-bottom .outside-content { margin: {left: 0; right: 0;} }
+  
+  /* Background Round Bottom */
+  .bg-round-bottom { margin: {left: 0; right: 0;} padding: {left: 0; right: 0;}
+    &:before { height: 400px; }
+  }
+  
+  /* Intro Unit */
+  .intro-unit {
+    .left-info { margin-left: 0; @include span-columns(6); }
+    .right-info { margin-right: 0; @include span-columns(6 omega); }
+  }
+}
+
+
+/* ==========================================================================
+   Medium devices / tablet (940px and down)
+   ========================================================================== */
+
+@include at-breakpoint(12 $screen-md-min) {
+  /* Container */
+  .container { max-width: $container-sm; }
+  
+  /* Menu Main */
+  .menu {
+    a { padding: 0 15px; }
+    
+    .left-menu { clear: left; 
+      > li:first-child a { padding-left: 0; }
+    }
+    
+    .right-menu {
+      .has-form { float: right; margin-top: -55px; }
+      .soc-links { clear: both; }
+    }
+    
+    .input-group {
+      .btn { background: $baseColorText; color: $white; 
+        &:hover { background: darken($baseColorText, 10%); }
+      }
+      .wrap-in input { border-color: $grey-lighten; 
+        &:focus { border-color: $grey-lighten; }
+      }
+    }
+    
+    .devider { display: none; }
+  }
+  
+  /* Background Round Bottom */
+  .bg-round-bottom:before { height: 300px; }
+}
+
+
+/* ==========================================================================
+   Small devices / phone (768px and down)
+   ========================================================================== */
+@include at-breakpoint(12 $screen-sm-min) {
+  h1, .h1 { font-size: 26px; }
+  h2, .h2 { font-size: 20px; }
+  h3, .h3 { font-size: 18px; }
+  h4, .h4 { font-size: 16px; }
+  h5, .h5 { font-size: 15px; }
+  h6, .h6 { font-size: 14px; }
+  
+  .lead { font-size: 18px; }
+  
+  /* Root */
+  .root { background: lighten($grey-lighten, 8%); }
+  
+  /* Off-canvas Header */
+  .off-canvas-header { display: block; }
+  
+  /* Header */
+  .header { @include box-shadow(#{none}); float: left; margin-left: -100%; padding: 0; @include transition(#{width .3s, margin .3s});
+    h1 { display: none; }
+    
+    .menu { margin: 15px 0 0;
+      > ul { margin: 0 0 20px; }
+      
+      li { border-bottom: 1px solid $grey-lighten; margin: 0 -15px 0 -7px; }
+      li + li { border-top: 1px solid $white; }
+      
+      > ul, li { display: block; float: none; }
+      
+      a { padding: 0 15px 0 7px; 
+        &:hover { background: $white; text-decoration: none; }
+      }
+      
+      .devider { display: none; }
+      
+      li ul { background: none transparent; @include box-shadow(#{none}); margin: 0; padding: 0; position: static; text-align: left; width: auto; }
+      
+      li li { border: 0 none; margin: 0 0 0 15px;
+        + li { border-top: 1px solid $grey-lighten; }
+        a { padding: 10px 7px; }
+      }
+      
+      .has-dropdown {
+        > a:after { float: right; margin-top: 9px; }
+        
+        &:hover { 
+          > ul { display: none; }
+          > a:after { @include rotate(0deg); } 
+        }
+        &.opened { 
+          > ul { display: block; }
+          > a { border-bottom: 1px solid $grey-lighten;
+            &:after { @include rotate(180deg); }
+          } 
+        }
+      }
+      
+      .left-menu > li:first-child a { padding-left: 7px; }
+      
+      .right-menu .has-form { border-top: 0 none; float: none; margin-top: 0; max-width: none;
+        form { margin: 45px 15px 15px 0; max-width: 250px; }
+      }
+      
+      .soc-links { 
+        ul a { background: none transparent; padding: 0 7px; }
+        li { border: 0 none; margin: 0; }
+        + li { padding-left: 0; 
+          a { padding: 0 15px 0 7px; }
+        }
+      } 
+    }
+  }
+
+  /* Wrapper Content */
+  .wrapper-content { background: $white; @include box-shadow(#{0 0 25px rgba($black, .3)}); float: left; margin-left: 0; position: relative; @include transition(#{width .3s, margin .3s}); width: 100%; z-index: 4; }
+  
+  /* Active Menu (Off-canvas) */
+  .active-menu {
+    .header { margin-left: 0; width: 80%; }
+    .wrapper-content { margin-right: -100%; }
+  }
+  
+  /* Slideshow Flipper */
+  .slideshow-flipper {
+    img { max-height: 285px; }
+    figcaption time { font: {size: 12px; weight: normal;} }
+  }
+  
+  /* Background Round Bottom */
+  .bg-round-bottom:before { height: 150px; }
+  
+  /* Intro Unit */
+  .intro-unit {
+    .left-info, .right-info { @include reset-columns; }
+  }
+  
+  /* Reset Sticky Footer */
+  html, body { height: auto; }
+  
+  .root { height: auto!important; margin-bottom: 0; min-height: 0; }
+  .root .root-footer { height: auto; }
+  
+  /* Footer */
+  .footer { height: auto; }
+}
+
+
+/* ==========================================================================
+   Extra Small devices / phone (480px and down)
+   ========================================================================== */
+@include at-breakpoint(16 $screen-xs-min) {
+  /* Slideshow Flipper */
+  .slideshow-flipper { background-color: $black;
+    .swiper-slide-active { @include box-shadow(#{none}); }
+    
+    img { margin: {left: auto; right: auto;} max-height: 180px; }
+    
+    figcaption { background-color: $grey-lighten; position: static; text-align: center; 
+      a { color: $black; }
+    }
+  }
+  
+  /* List Blog Posts */
+  .list-blog-posts > ul > li { @include reset-columns; }
+}
+
+
