@@ -15,6 +15,32 @@ var bpmw = bpmw || {};
 	bpmw.onload = function() {
 		
 		/**
+		 * Slideshow Press (as on About page)
+		 */
+		var slideshowPress = new Swiper('.slideshow-press .swiper-container', {
+	    mode: 'horizontal',	    
+	    grabCursor: true,
+	    paginationClickable: true,
+	    calculateHeight: true,
+	    loopAdditionalSlides: 3,
+	    resizeReInit: true,	  
+	    loop: true,
+	    slidesPerView: 3,
+	    slidesPerGroup: 3
+	  });
+	  
+	  // Slideshow Press: Next and Prev Slider 
+	  $('.slideshow-press .prev-slide').on('click', function(e) {
+	    e.preventDefault();
+	    slideshowPress.swipePrev();
+	  });
+	  
+	  $('.slideshow-press .next-slide').on('click', function(e) {
+	    e.preventDefault();
+	    slideshowPress.swipeNext();
+	  });
+				
+		/**
 		 * Slideshow Flipper
 		 */
 		var slideshowFlipper = new Swiper('.slideshow-flipper .swiper-container', {
@@ -102,6 +128,67 @@ var bpmw = bpmw || {};
 		
 		// To Support Placeholder
 		if(!Modernizr.input.placeholder) { $('html').addClass('no-placeholder'); }
+		
+		
+		/**
+		 * Modals
+		 */		
+		 
+		// Open Modal Slideshow
+		$(document).on('click', '[data-modal]', function(e) {
+			e.preventDefault();
+			
+			var modal			= $(this),
+					modalUrl	= modal.data('url');
+			
+			// Test Ajax (need to replace)
+			$.ajax({
+			  url: modalUrl,
+			  cache: false
+			}).done(function(html) {
+		    $('body').append(html);
+		    
+		    // Delay
+		    setTimeout(function() {
+		    	$('body').addClass('modal-open');
+		    }, 10);
+		  });		  
+		});
+		
+		// Close Modal Slideshow			
+		$(document).on('keyup', 'body.modal-open', function(e) {
+			// detect escape key press
+			if(e.keyCode == 27) {
+				$('body').removeClass('modal-open');
+				
+				// Delay
+		    setTimeout(function() {
+		    	$('.modal, .modal-backdrop').remove();
+		    }, 300);	
+			}
+		});
+		
+		$(document).on('click', '.modal .close', function(e) {
+			e.preventDefault();
+			
+			$('body').removeClass('modal-open');
+			
+			// Delay
+	    setTimeout(function() {
+	    	$('.modal, .modal-backdrop').remove();
+	    }, 300);	
+		});
+		
+		$(document).on('click', '.modal', function(e) {
+			$('body').removeClass('modal-open');
+			
+			// Delay
+	    setTimeout(function() {
+	    	$('.modal, .modal-backdrop').remove();
+	    }, 300);			
+		}).on('click', '.modal-dialog', function(e) {
+	    e.stopPropagation();
+		});
 	};
 
 	// Document Ready

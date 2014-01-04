@@ -55,10 +55,10 @@ $screen-md-max:              ($screen-lg-min - 1);
 // Grid system
 // --------------------------------------------------
 
-$total-columns    : 12;
+$total-columns    : 12; 
 $column-width     : 62px;
 $gutter-width     : 36px;
-$grid-padding     : 15px;
+$grid-padding     : 15px; 
 $container-style  : magic;
 
 $show-grid-backgrounds  : true;
@@ -83,3 +83,5 @@ $container-width  : $container-lg;
 
 // Padding Content Site
 $side-padding-content: 44px;
+
+$gutter-top: 30px;
